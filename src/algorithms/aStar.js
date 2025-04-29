@@ -59,7 +59,7 @@ export const aStarSearch = (initialState, size, updateExploredNodes) => {
     closed.add(currentNode.hash);
     
     if (isPuzzleSolved(currentNode.state, size)) {
-      // Build the path
+     
       const path = [];
       let node = currentNode;
       
