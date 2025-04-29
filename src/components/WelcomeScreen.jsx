@@ -86,7 +86,7 @@ const WelcomeScreen = ({ onModeSelect }) => {
         className="welcome-info"
         variants={itemVariants}
       >
-        <p>Development by Sourabh Sharma | Design by Abhinav Bhardwaj | Contributions by Ankit Jha.</p>
+        <p>Development by Subodh | Design by Namee Jain | Contributions by Nikhil Kannouje.</p>
       </motion.div>
     </motion.div>
   );
