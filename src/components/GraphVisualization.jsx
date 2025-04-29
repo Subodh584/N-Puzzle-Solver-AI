@@ -7,7 +7,7 @@ import '../styles/GraphVisualization.css';
 const GraphVisualization = ({ nodes, edges, currentNodeIndex }) => {
   const svgRef = useRef(null);
   
-  // Set up and render the graph visualization
+
   useEffect(() => {
     if (!nodes || nodes.length === 0 || !svgRef.current) return;
     
@@ -15,10 +15,10 @@ const GraphVisualization = ({ nodes, edges, currentNodeIndex }) => {
     const width = svgRef.current.clientWidth;
     const height = svgRef.current.clientHeight;
     
-    // Clear previous visualization
+
     svg.selectAll("*").remove();
     
-    // Create a force directed graph
+
     const simulation = d3.forceSimulation()
       .force("link", d3.forceLink().id(d => d.hash).distance(50))
       .force("charge", d3.forceManyBody().strength(-100))
@@ -26,7 +26,7 @@ const GraphVisualization = ({ nodes, edges, currentNodeIndex }) => {
       .force("x", d3.forceX(width / 2).strength(0.1))
       .force("y", d3.forceY(height / 2).strength(0.1));
     
-    // Process the nodes and edges
+
     const graphNodes = nodes.map(node => ({
       ...node,
       x: width / 2 + (Math.random() - 0.5) * 100,
@@ -38,7 +38,7 @@ const GraphVisualization = ({ nodes, edges, currentNodeIndex }) => {
       target: edge.target
     }));
     
-    // Create the links
+
     const link = svg.append("g")
       .attr("class", "links")
       .selectAll("line")
@@ -48,7 +48,7 @@ const GraphVisualization = ({ nodes, edges, currentNodeIndex }) => {
       .attr("stroke", "rgba(0, 0, 0, 0.2)")
       .attr("stroke-width", 1);
     
-    // Create the nodes
+
     const node = svg.append("g")
       .attr("class", "nodes")
       .selectAll("circle")
@@ -57,11 +57,11 @@ const GraphVisualization = ({ nodes, edges, currentNodeIndex }) => {
       .append("circle")
       .attr("r", 5)
       .attr("fill", (d, i) => {
-        // For the current path node
+
         if (i === currentNodeIndex) {
           return "var(--secondary-color)";
         }
-        // For explored nodes
+
         return "var(--node-color)";
       })
       .call(d3.drag()
@@ -69,11 +69,11 @@ const GraphVisualization = ({ nodes, edges, currentNodeIndex }) => {
         .on("drag", dragged)
         .on("end", dragended));
     
-    // Add tooltip on hover
+
     node.append("title")
       .text(d => `Depth: ${d.depth}`);
     
-    // Update node positions in each tick of the simulation
+
     simulation.nodes(graphNodes).on("tick", ticked);
     simulation.force("link").links(graphLinks);
     
@@ -106,37 +106,34 @@ const GraphVisualization = ({ nodes, edges, currentNodeIndex }) => {
       d.fy = null;
     }
     
-    // Highlight the current path
+
     if (currentNodeIndex !== null) {
       let currentNode = nodes[currentNodeIndex];
       
-      // Trace back through parents to highlight the path
+
       while (currentNode && currentNode.parent) {
-        // Find the edge between this node and its parent
+
         const pathEdge = edges.find(edge => 
           edge.source === currentNode.parent.hash && edge.target === currentNode.hash
         );
         
         if (pathEdge) {
-          // Find and highlight the link
+
           svg.selectAll("line")
             .filter(d => d.source.hash === pathEdge.source && d.target.hash === pathEdge.target)
             .attr("stroke", "var(--secondary-color)")
             .attr("stroke-width", 2);
         }
         
-        // Move to the parent
         currentNode = currentNode.parent;
       }
     }
     
-    // Clean up on unmount
     return () => {
       simulation.stop();
     };
   }, [nodes, edges, currentNodeIndex]);
   
-  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       if (nodes && nodes.length > 0) {
@@ -144,14 +141,12 @@ const GraphVisualization = ({ nodes, edges, currentNodeIndex }) => {
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove();
         
-        // Force a rerender by updating the state
-        // This is a simplified approach - in a real app you might want to debounce this
         setTimeout(() => {
           const tempSvg = svgRef.current;
           if (tempSvg) {
             const width = tempSvg.clientWidth;
             const height = tempSvg.clientHeight;
-            // Do the rerender
+
           }
         }, 0);
       }
