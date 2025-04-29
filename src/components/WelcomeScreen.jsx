@@ -52,7 +52,7 @@ const WelcomeScreen = ({ onModeSelect }) => {
         className="welcome-subtitle"
         variants={itemVariants}
       >
-        Visualize and solve the sliding puzzle problem beautifully
+        Visualize and solve the sliding puzzle problem using our Visualizer!
       </motion.p>
       
       <motion.div 
@@ -86,7 +86,7 @@ const WelcomeScreen = ({ onModeSelect }) => {
         className="welcome-info"
         variants={itemVariants}
       >
-        <p>Slide the tiles to arrange them in order, or let the AI find the solution!</p>
+        <p>Development by Subodh | Design by Namee Jain | Contributions by Nikhil Kannouje.</p>
       </motion.div>
     </motion.div>
   );
