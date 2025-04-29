@@ -1,0 +1,99 @@
+
+.manual-solve-mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.mode-title {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: var(--primary-dark);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.puzzle-container {
+  width: 100%;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.control-button {
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.reset-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.back-button {
+  background-color: var(--bg-accent);
+  color: var(--text-color);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .manual-solve-mode {
+    padding: 16px;
+  }
+  
+  .mode-title {
+    font-size: 1.8rem;
+  }
+  
+  .stat-value {
+    font-size: 1.5rem;
+  }
+  
+  .control-button {
+    padding: 10px 16px;
+  }
+}
