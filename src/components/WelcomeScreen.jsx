@@ -45,7 +45,7 @@ const WelcomeScreen = ({ onModeSelect }) => {
         className="welcome-title"
         variants={itemVariants}
       >
-        3×3 Puzzle Solver
+        N-Puzzle Analyzer
       </motion.h1>
       
       <motion.p 
